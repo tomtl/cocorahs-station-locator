@@ -1,16 +1,23 @@
+"""
+TITLE:          CoCoRaHs Station Locator
+
+CREATION DATE:  2/27/2015
+CREATED BY:     Tom Lee
+
+STATUS:         It works. Enter the input and output files manually.
+                Input file is a text file, one station ID per row.
+"""
+
 from mechanize import Browser
 from bs4 import BeautifulSoup
 
 def getInfo(station_number):
-    # Open and read COGCC webpage
+    # Open and read the CoCoRaHs Station webpage
     mech = Browser()
     url = "http://www.cocorahs.org/Stations/Station.aspx?StationNumber=" + station_number
     page = mech.open(url)
     html = page.read()
-    # html = html[html.find('View Station Detail'):]
     soup = BeautifulSoup(html)
-    # table = soup.table(id="Table1")
-
 
     # Find station info data
 
@@ -61,5 +68,5 @@ for station_number in input_file.readlines():
 
 output_file.close()
 
-#Print end
+# Print end
 print "Process Completed" 
